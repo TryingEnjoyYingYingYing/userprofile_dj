@@ -1,0 +1,86 @@
+### Query tag with level
+GET http://localhost:8081/tags?level=-1
+
+### Query tag with pid
+GET http://localhost:8081/tags?pid=0
+
+### Query tag and model
+GET http://localhost:8081/tags/model?pid=0
+
+### Create mutil tags with relation
+PUT http://localhost:8081/tags/relation
+Content-Type: application/json
+
+[
+  {
+    "name": "Hello",
+    "level": "1"
+  },
+  {
+    "name": "Hello",
+    "level": "2"
+  },
+  {
+    "name": "Hello",
+    "level": "3"
+  }
+]
+
+### Create model tag
+POST http://localhost:8081/tags/model
+Content-Type: application/json
+
+{
+  "tag": {
+    "name": "HelloSpark",
+    "business": "testing",
+    "industry": "testing",
+    "rule": "",
+    "level": 4,
+    "parentId": -1
+  },
+  "model": {
+    "name": "HelloSpark",
+    "path": "hdfs://bd001:8020/apps/tags_new/jars/7449f9a4-42ce-44a2-819f-13e946de1943.jar",
+    "mainClass": "cn.itcast.up.model.HelloSpark",
+    "args": "",
+    "schedule": {
+      "frequency": "1",
+      "startTime": "2019-09-16 15:20",
+      "endTime": "2019-09-16 15:20"
+    }
+  }
+}
+
+### Create data tag
+POST http://localhost:8081/tags/data
+Content-Type: application/json
+
+{
+  "name": "Hello",
+  "business": "Hello",
+  "industry": "标签",
+  "rule": "Hello",
+  "level": 5,
+  "parentId": 8
+}
+
+### Update model state
+PUT http://localhost:8081/tags/233/model
+Content-Type: application/json
+
+{
+  "state": 3
+}
+
+
+
+### Upload file
+POST http://localhost:8081/tags/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="up_model-0.1.0.jar"
+
+< /Users/lifzhe/Downloads/up_model-0.1.0-jar-with-dependencies.jar
+###
